@@ -1,0 +1,23 @@
+hello
+<script src="./recorder.min.js"></script>
+
+<script>
+  var r = new Recorder();
+  r.addEventListener('dataAvailable', function(e) {
+    console.log(e.detail);
+  });
+  r.addEventListener('streamError', function(streamError) {
+    console.log('streamError', streamError);
+  });
+  r.addEventListener('streamReady', function(data) {
+    r.start();
+  });
+  r.initStream();
+
+  setTimeout(function() {
+    console.log('stopping');
+    r.stop();
+    r.clearStream();
+  }, 1000);
+
+</script>
